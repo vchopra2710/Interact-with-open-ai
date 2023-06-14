@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Interact-with-open-ai</string>
+    <string name="tab_chat">Chat</string>
+    <string name="tab_image">Image</string>
 </resources>

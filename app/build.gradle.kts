@@ -77,6 +77,9 @@ dependencies {
     // https://google.github.io/accompanist/systemuicontroller/
     implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
 
+    // https://google.github.io/accompanist/navigation-animation/
+    implementation("com.google.accompanist:accompanist-navigation-animation:$accompanistVersion")
+
     // https://developer.android.com/training/dependency-injection/hilt-android
     val hiltVersion = "2.44"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
