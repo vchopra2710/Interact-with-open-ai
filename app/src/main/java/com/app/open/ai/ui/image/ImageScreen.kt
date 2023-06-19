@@ -26,6 +26,7 @@ fun ImageScreen(
         value = imageQuery,
         modifier = Modifier.weight(0.1f),
         onValueChange = viewModel::updateImageText,
+        onSendClick = viewModel::onSendClick,
     )
 }
 
