@@ -25,6 +25,6 @@ Get api key from open ai
 - Image: communicate with open ai using https://platform.openai.com/docs/api-reference/images
 
 <p align="center">
-<img width="300" src="screenshots/chat.png?raw=true">
-<img width="300" src="screenshots/image.png?raw=true">
+<img width="450" src="screenshots/chat.png?raw=true">
+<img width="450" src="screenshots/image.png?raw=true">
 </p>
