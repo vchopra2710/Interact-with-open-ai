@@ -6,9 +6,13 @@ import com.app.open.ai.R
 import com.app.open.ai.data.mapper.toDomain
 import com.app.open.ai.data.model.chat.request.ChatRequestDto
 import com.app.open.ai.data.model.chat.response.ChatResponseDto
+import com.app.open.ai.data.model.image.request.ImageRequestDto
+import com.app.open.ai.data.model.image.response.ImageResponseDto
 import com.app.open.ai.data.network.OpenAIApiRoutes.CHAT_URL
 import com.app.open.ai.data.network.OpenAIApiRoutes.CONNECT_OPEN_AI_BE
+import com.app.open.ai.data.network.OpenAIApiRoutes.IMAGE_URL
 import com.app.open.ai.domain.model.chat.response.ChatResponse
+import com.app.open.ai.domain.model.image.response.ImageResponse
 import com.app.open.ai.domain.repository.IOpenApiRepository
 import com.app.open.ai.utils.readJsonFile
 import io.ktor.client.HttpClient
@@ -46,7 +50,19 @@ class OpenApiRepository @Inject constructor(
         }.toDomain()
     }
 
-    override suspend fun imageResponse() {
-        TODO("Not yet implemented")
+    override suspend fun imageResponse(request: ImageRequestDto): ImageResponse {
+        return if (CONNECT_OPEN_AI_BE) {
+            client.post {
+                url(IMAGE_URL)
+                headers {
+                    append(HttpHeaders.ContentType, "application/json")
+                    append(HttpHeaders.Authorization, "Bearer ${BuildConfig.OPEN_AI_API_KEY}")
+                }
+                setBody(request)
+            }.body<ImageResponseDto>()
+        } else {
+            val chatString = context.readJsonFile(id = R.raw.image)
+            json.decodeFromString<ImageResponseDto>(chatString)
+        }.toDomain()
     }
 }

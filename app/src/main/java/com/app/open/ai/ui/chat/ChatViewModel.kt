@@ -48,7 +48,7 @@ class ChatViewModel @Inject constructor(
                 },
             )
 
-            _chatText.value = ""
+            updateChat(null)
         }
     }
 
@@ -70,5 +70,4 @@ class ChatViewModel @Inject constructor(
             history
         }
     }
-
 }
