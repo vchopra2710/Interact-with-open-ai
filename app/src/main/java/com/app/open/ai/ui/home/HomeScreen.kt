@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,7 +28,7 @@ fun HomeScreen(
 ) = Scaffold(
     bottomBar = { NavigationBar(navController = navController) },
     modifier = Modifier.navigationBarsPadding(),
-    backgroundColor = MaterialTheme.colors.background
+    backgroundColor = Color.Black,
 ) { paddingValues ->
     Box(modifier = Modifier.padding(paddingValues)) {
         HomeNavigation(navController = navController)
@@ -54,18 +53,12 @@ private fun NavigationBar(navController: NavHostController) = BottomNavigation(
             alwaysShowLabel = true,
             onClick = {
                 navController.navigate(item.route) {
-                    // Pop up to the start destination of the graph to
-                    // avoid building up a large stack of destinations
-                    // on the back stack as users select items
                     navController.graph.startDestinationRoute?.let { route ->
                         popUpTo(route) {
                             saveState = true
                         }
                     }
-                    // Avoid multiple copies of the same destination when
-                    // reselecting the same item
                     launchSingleTop = true
-                    // Restore state when reselecting a previously selected item
                     restoreState = true
                 }
             }
