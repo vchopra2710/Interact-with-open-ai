@@ -15,7 +15,7 @@ import javax.inject.Inject
 class ImageViewModel @Inject constructor(
     private val imageFromOpenAIUseCase: ImageFromOpenAIUseCase,
 ) : ViewModel() {
-    private val _imageText = MutableStateFlow("can you create pets image")
+    private val _imageText = MutableStateFlow("")
     val imageText: StateFlow<String> = _imageText
 
     private val _chatHistory = MutableStateFlow<List<Pair<String, List<String>?>>>(listOf())
